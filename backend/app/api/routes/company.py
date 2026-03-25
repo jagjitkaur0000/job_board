@@ -23,11 +23,6 @@ def create_company_route(
     db: Session = Depends(get_db),
     current_user: User = Depends(require_role("recruiter"))
 ):
-    """
-    Create a company.
-
-    Access: recruiter only
-    """
 
     company = create_company(
         db=db,

@@ -7,7 +7,6 @@ function JobDetail() {
   const [job, setJob] = useState(null);
 
   useEffect(() => {
-    // Fetch single job by ID (backend must have GET /jobs/{id})
     api.get(`/jobs/${id}`)
       .then((res) => setJob(res.data))
       .catch(() => alert("Job not found"));

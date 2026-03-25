@@ -11,23 +11,23 @@ function Login() {
     e.preventDefault();
 
     try {
-      // Use api.js instance; baseURL already includes /auth
+     
       const response = await api.post("/login", {
         email,
         password,
       });
 
-      // Check if token exists
+      
       if (!response.data.access_token) {
         throw new Error("No token returned from backend");
       }
 
       console.log("Backend response:", response.data);
 
-      // Store JWT for future authenticated requests
+     
       localStorage.setItem("token", response.data.access_token);
 
-      // Navigate to dashboard
+     
       navigate("/dashboard");
     } catch (error) {
       console.error(

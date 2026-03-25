@@ -23,17 +23,16 @@ function Jobs() {
 
         const data = res.data;
 
-        // Case 1: paginated response
         if (data && Array.isArray(data.items)) {
           setJobs(data.items);
           setTotal(data.total || data.items.length);
         }
-        // Case 2: simple list
+        
         else if (Array.isArray(data)) {
           setJobs(data);
           setTotal(data.length);
         }
-        // Case 3: unexpected response
+       
         else {
           console.error("Unexpected API response:", data);
           setJobs([]);

@@ -8,9 +8,6 @@ from app.core.security import hash_password, verify_password
 from app.core.jwt import create_access_token
 
 
-# =========================
-# Register User
-# =========================
 def register_user(
     db: Session,
     email: str,
@@ -18,7 +15,7 @@ def register_user(
     role_name: str
 ) -> User:
 
-    # Check existing user
+    
     existing_user = db.query(User).filter(User.email == email).first()
 
     if existing_user:
@@ -27,7 +24,7 @@ def register_user(
             detail="Email already registered"
         )
 
-    # Find role
+    
     role = db.query(Role).filter(Role.name == role_name).first()
 
     if not role:
@@ -36,12 +33,12 @@ def register_user(
             detail=f"Role '{role_name}' does not exist"
         )
 
-    # bcrypt limit protection
+    
     safe_password = password[:72]
 
     hashed_password = hash_password(safe_password)
 
-    # Create user
+
     new_user = User(
         email=email,
         password_hash=hashed_password,
@@ -55,9 +52,6 @@ def register_user(
     return new_user
 
 
-# =========================
-# Login User
-# =========================
 def login_user(
     db: Session,
     email: str,

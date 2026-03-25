@@ -21,25 +21,16 @@ def apply_to_job(
     current_user=Depends(get_current_user),
 ):
 
-    # =========================
-    # DEBUG (remove later)
-    # =========================
     print("\n=== APPLICATION DEBUG ===")
     print("USER ID:", current_user.id)
     print("ROLE NAME:", current_user.role.name)
 
-    # =========================
-    # ✅ ONLY APPLICANT ALLOWED
-    # =========================
     if current_user.role is None or current_user.role.name != "applicant":
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Only applicants can apply to jobs",
         )
 
-    # =========================
-    # JOB MUST EXIST
-    # =========================
     job = db.query(Job).filter(Job.id == job_id).first()
     if not job:
         raise HTTPException(
@@ -47,9 +38,6 @@ def apply_to_job(
             detail="Job not found",
         )
 
-    # =========================
-    # PREVENT DUPLICATE
-    # =========================
     existing_application = db.query(Application).filter(
         Application.user_id == current_user.id,
         Application.job_id == job_id
@@ -61,9 +49,6 @@ def apply_to_job(
             detail="You have already applied to this job",
         )
 
-    # =========================
-    # CREATE APPLICATION
-    # =========================
     new_application = Application(
         user_id=current_user.id,
         job_id=job_id,

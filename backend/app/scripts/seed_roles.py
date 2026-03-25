@@ -1,4 +1,3 @@
-# app/scripts/seed_roles.py
 
 from app.db.session import SessionLocal
 from app.models.role import Role

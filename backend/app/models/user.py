@@ -12,7 +12,6 @@ class User(Base):
 
     role_id = Column(Integer, ForeignKey("roles.id"), nullable=False)
 
-    # Relationships
     role = relationship("Role", back_populates="users")
     companies = relationship("Company", back_populates="owner")
     applications = relationship("Application", back_populates="user")

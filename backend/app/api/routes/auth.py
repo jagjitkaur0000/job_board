@@ -13,9 +13,6 @@ router = APIRouter(
 )
 
 
-# =========================
-# Register User
-# =========================
 @router.post(
     "/register",
     response_model=UserResponse,
@@ -35,9 +32,6 @@ def register(
     return user
 
 
-# =========================
-# Login User
-# =========================
 @router.post(
     "/login",
     status_code=status.HTTP_200_OK
