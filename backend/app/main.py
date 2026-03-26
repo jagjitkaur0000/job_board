@@ -1,12 +1,17 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.session import engine
+from app.models import Base
+
 from app.api.routes.auth import router as auth_router
 from app.api.routes.company import router as company_router
 from app.api.routes.job import router as job_router
 from app.api.routes.application import router as application_router
 
 app = FastAPI(title="Job Board API")
+
+Base.metadata.create_all(bind=engine)
 
 origins = [
     "http://localhost:3000",
