@@ -1,4 +1,18 @@
-from app.models.base import Base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+import os
 
-def init_db():
-    Base.metadata.create_all(bind=engine)
+from app.models import Base
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"sslmode": "require"}
+)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)

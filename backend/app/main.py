@@ -11,6 +11,7 @@ from app.api.routes.application import router as application_router
 
 app = FastAPI(title="Job Board API")
 
+# Create tables in Neon database
 Base.metadata.create_all(bind=engine)
 
 origins = [
@@ -18,7 +19,6 @@ origins = [
     "http://127.0.0.1:3000",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://job-board-z8bn.onrender.com",
     "https://job-board-brown-theta.vercel.app"
 ]
 
