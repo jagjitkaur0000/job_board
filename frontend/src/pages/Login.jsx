@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../api"; // use the axios instance
+import api from "../api";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -11,37 +11,27 @@ function Login() {
     e.preventDefault();
 
     try {
-     
-      const response = await api.post("/login", {
-        email,
-        password,
-      });
+      const formData = new URLSearchParams();
+      formData.append("username", email);
+      formData.append("password", password);
 
-      
-      if (!response.data.access_token) {
-        throw new Error("No token returned from backend");
-      }
+      const response = await api.post("/auth/login", formData);
 
-      console.log("Backend response:", response.data);
-
-     
       localStorage.setItem("token", response.data.access_token);
+      localStorage.setItem("role", response.data.role_name);
 
-     
       navigate("/dashboard");
+
     } catch (error) {
-      console.error(
-        "Login error:",
-        error.response ? error.response.data : error.message
-      );
-      alert(
-        error.response?.data?.detail || "Login failed. Check credentials."
-      );
+      console.error(error.response?.data || error.message);
+      alert("Login failed");
     }
   };
 
   return (
     <form onSubmit={handleLogin}>
+      <h3>Login</h3>
+
       <input
         type="email"
         placeholder="Email"
@@ -49,6 +39,7 @@ function Login() {
         onChange={(e) => setEmail(e.target.value)}
         required
       />
+
       <input
         type="password"
         placeholder="Password"
@@ -56,6 +47,7 @@ function Login() {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
+
       <button type="submit">Login</button>
     </form>
   );

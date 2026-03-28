@@ -11,18 +11,38 @@ function Dashboard() {
     }
   }, [navigate]);
 
+  const role = localStorage.getItem("role");
+
   return (
     <div>
       <h1>Dashboard</h1>
 
-      <button onClick={() => navigate("/jobs")}>View Jobs</button>
-      <button onClick={() => navigate("/company")}>Create Company</button>
-      <button onClick={() => navigate("/post-job")}>Post Job</button>
-      <button onClick={() => navigate("/applications")}>My Applications</button>
+      {role === "1" && (
+        <>
+          <button onClick={() => navigate("/company")}>
+            Create Company
+          </button>
+          <button onClick={() => navigate("/post-job")}>
+            Post Job
+          </button>
+        </>
+      )}
+
+      {role === "2" && (
+        <>
+          <button onClick={() => navigate("/")}>
+            View Jobs
+          </button>
+          <button onClick={() => navigate("/applications")}>
+            My Applications
+          </button>
+        </>
+      )}
 
       <button
         onClick={() => {
           localStorage.removeItem("token");
+          localStorage.removeItem("role");
           navigate("/login");
         }}
       >

@@ -15,7 +15,6 @@ def register_user(
     role_name: str
 ) -> User:
 
-    
     existing_user = db.query(User).filter(User.email == email).first()
 
     if existing_user:
@@ -24,7 +23,6 @@ def register_user(
             detail="Email already registered"
         )
 
-    
     role = db.query(Role).filter(Role.name == role_name).first()
 
     if not role:
@@ -33,11 +31,8 @@ def register_user(
             detail=f"Role '{role_name}' does not exist"
         )
 
-    
     safe_password = password[:72]
-
     hashed_password = hash_password(safe_password)
-
 
     new_user = User(
         email=email,
@@ -74,6 +69,8 @@ def login_user(
             detail="Invalid email or password"
         )
 
+    role = db.query(Role).filter(Role.id == user.role_id).first()
+
     access_token = create_access_token(
         data={
             "sub": str(user.id),
@@ -85,4 +82,5 @@ def login_user(
     return {
         "access_token": access_token,
         "token_type": "bearer",
+        "role_name": role.name
     }
