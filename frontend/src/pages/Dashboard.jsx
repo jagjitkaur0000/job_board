@@ -7,18 +7,27 @@ function Dashboard() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/login"); // redirect if not logged in
+      navigate("/login");
     }
   }, [navigate]);
 
   return (
     <div>
       <h1>Dashboard</h1>
-      <p>Welcome to your dashboard</p>
-      <p>
-        You can browse jobs, apply, or manage postings depending on your role.
-        (Role-based features will work once you implement role checks.)
-      </p>
+
+      <button onClick={() => navigate("/jobs")}>View Jobs</button>
+      <button onClick={() => navigate("/company")}>Create Company</button>
+      <button onClick={() => navigate("/post-job")}>Post Job</button>
+      <button onClick={() => navigate("/applications")}>My Applications</button>
+
+      <button
+        onClick={() => {
+          localStorage.removeItem("token");
+          navigate("/login");
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 }

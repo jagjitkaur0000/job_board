@@ -4,20 +4,21 @@ import Register from "./pages/Register";
 import Jobs from "./pages/Jobs";
 import JobDetail from "./pages/JobDetail";
 import Dashboard from "./pages/Dashboard";
+import CreateCompany from "./pages/CreateCompany";
+import PostJob from "./pages/PostJob";
+import MyApplications from "./pages/MyApplications";
 
 function App() {
   return (
     <Routes>
-      {/* Public Routes */}
       <Route path="/" element={<Jobs />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-
-      {/* Job Details */}
       <Route path="/jobs/:id" element={<JobDetail />} />
-
-      {/* Protected Route */}
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/company" element={<CreateCompany />} />
+      <Route path="/post-job" element={<PostJob />} />
+      <Route path="/applications" element={<MyApplications />} />
     </Routes>
   );
 }
