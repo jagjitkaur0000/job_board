@@ -21,13 +21,15 @@ function Login() {
         },
       });
 
+      console.log("LOGIN RESPONSE:", response.data);
+
       localStorage.setItem("token", response.data.access_token);
       localStorage.setItem("role", response.data.role_name);
 
       navigate("/dashboard");
 
     } catch (error) {
-      console.error(error.response?.data || error.message);
+      console.error("LOGIN ERROR:", error.response?.data || error.message);
       alert(error.response?.data?.detail || "Login failed");
     }
   };
