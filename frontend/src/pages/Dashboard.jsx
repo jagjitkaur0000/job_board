@@ -17,7 +17,7 @@ function Dashboard() {
     <div>
       <h1>Dashboard</h1>
 
-      {role === "1" && (
+      {role === "recruiter" && (
         <>
           <button onClick={() => navigate("/company")}>
             Create Company
@@ -28,7 +28,7 @@ function Dashboard() {
         </>
       )}
 
-      {role === "2" && (
+      {role === "applicant" && (
         <>
           <button onClick={() => navigate("/")}>
             View Jobs

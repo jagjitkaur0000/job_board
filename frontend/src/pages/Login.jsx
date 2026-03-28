@@ -15,7 +15,11 @@ function Login() {
       formData.append("username", email);
       formData.append("password", password);
 
-      const response = await api.post("/auth/login", formData);
+      const response = await api.post("/auth/login", formData, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
 
       localStorage.setItem("token", response.data.access_token);
       localStorage.setItem("role", response.data.role_name);
@@ -24,7 +28,7 @@ function Login() {
 
     } catch (error) {
       console.error(error.response?.data || error.message);
-      alert("Login failed");
+      alert(error.response?.data?.detail || "Login failed");
     }
   };
 
