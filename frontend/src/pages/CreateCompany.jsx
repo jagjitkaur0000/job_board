@@ -4,19 +4,17 @@ import { useNavigate } from "react-router-dom";
 
 function CreateCompany() {
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
   const handleCreateCompany = async (e) => {
     e.preventDefault();
 
     try {
-      await api.post("/companies", {
+      const res = await api.post("/companies", {
         name,
-        description,
       });
 
-      alert("Company created successfully");
+      alert("Company created. Your Company ID is: " + res.data.id);
       navigate("/dashboard");
     } catch (error) {
       console.error(
@@ -36,14 +34,6 @@ function CreateCompany() {
         placeholder="Company Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        required
-      />
-
-      <input
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
         required
       />
 

@@ -5,7 +5,7 @@ function MyApplications() {
   const [applications, setApplications] = useState([]);
 
   useEffect(() => {
-    api.get("/applications")
+    api.get("/applications/me")
       .then((res) => setApplications(res.data))
       .catch((err) => {
         console.error("Applications error:", err);

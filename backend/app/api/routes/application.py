@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from typing import List
 
 from app.db.session import get_db
 from app.models.job import Job
@@ -10,6 +11,7 @@ from app.core.dependencies import get_current_user
 router = APIRouter(prefix="/applications", tags=["Applications"])
 
 
+# APPLY TO JOB
 @router.post(
     "/jobs/{job_id}/apply",
     response_model=ApplicationResponse,
@@ -20,10 +22,6 @@ def apply_to_job(
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
 ):
-
-    print("\n=== APPLICATION DEBUG ===")
-    print("USER ID:", current_user.id)
-    print("ROLE NAME:", current_user.role.name)
 
     if current_user.role is None or current_user.role.name != "applicant":
         raise HTTPException(
@@ -46,12 +44,13 @@ def apply_to_job(
     if existing_application:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="You have already applied to this job",
+            detail="You already applied to this job",
         )
 
     new_application = Application(
         user_id=current_user.id,
         job_id=job_id,
+        status="applied"
     )
 
     db.add(new_application)
@@ -59,3 +58,20 @@ def apply_to_job(
     db.refresh(new_application)
 
     return new_application
+
+
+# GET MY APPLICATIONS
+@router.get(
+    "",
+    response_model=List[ApplicationResponse]
+)
+def get_my_applications(
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+):
+
+    applications = db.query(Application).filter(
+        Application.user_id == current_user.id
+    ).all()
+
+    return applications

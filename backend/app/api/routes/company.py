@@ -23,11 +23,25 @@ def create_company_route(
     db: Session = Depends(get_db),
     current_user: User = Depends(require_role("recruiter"))
 ):
-
     company = create_company(
         db=db,
         recruiter=current_user,
         name=company_in.name
     )
+
+    return company
+
+
+@router.get("/me")
+def get_my_company(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role("recruiter"))
+):
+    company = db.query(
+        __import__("app.models.company").models.company.Company
+    ).filter_by(owner_id=current_user.id).first()
+
+    if not company:
+        return {"message": "No company found"}
 
     return company

@@ -11,6 +11,16 @@ function Jobs() {
   const limit = 10;
   const [sort, setSort] = useState("newest");
 
+  const applyJob = async (jobId) => {
+    try {
+      await api.post(`/applications/jobs/${jobId}/apply`);
+      alert("Applied successfully");
+    } catch (err) {
+      console.error("Apply error:", err.response?.data);
+      alert(err.response?.data?.detail || "Failed to apply");
+    }
+  };
+
   useEffect(() => {
     const fetchJobs = async () => {
       setLoading(true);
@@ -26,14 +36,10 @@ function Jobs() {
         if (data && Array.isArray(data.items)) {
           setJobs(data.items);
           setTotal(data.total || data.items.length);
-        }
-        
-        else if (Array.isArray(data)) {
+        } else if (Array.isArray(data)) {
           setJobs(data);
           setTotal(data.length);
-        }
-       
-        else {
+        } else {
           console.error("Unexpected API response:", data);
           setJobs([]);
           setTotal(0);
@@ -74,6 +80,10 @@ function Jobs() {
             <Link to={`/jobs/${job.id}`}>
               <h3>{job.title}</h3>
             </Link>
+
+            <button onClick={() => applyJob(job.id)}>
+              Apply
+            </button>
           </div>
         ))
       )}
