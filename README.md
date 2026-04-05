@@ -1,152 +1,154 @@
-\# Job Board Full Stack Application
+# Job Board Full Stack Application
 
+## Overview
 
+This is a full stack Job Board web application where recruiters can post jobs and candidates can browse and apply for jobs.
 
-\## Overview
+The system includes authentication, role-based access control, job posting, job applications, and full deployment using modern cloud platforms.
 
-This is a full stack Job Board web application where recruiters can post jobs and applicants can apply for jobs.
+---
 
+## Live Demo
 
+Frontend: https://job-board-brown-theta.vercel.app/
+Backend API: https://job-board-z8bn.onrender.com
+API Docs (Swagger): https://job-board-z8bn.onrender.com/docs
 
-The project is built using FastAPI, React, PostgreSQL, Docker, and deployed using Railway.
+---
 
+## Features
 
+* User Registration and Login (JWT Authentication)
+* Role-Based Access Control (Recruiter / Candidate)
+* Recruiters can create companies and post jobs
+* Candidates can browse jobs and apply
+* Prevent duplicate job applications
+* View all jobs with pagination
+* View job details
+* Fully deployed full stack system
 
-\## Features
+---
 
-\- User Registration and Login (JWT Authentication)
+## Tech Stack
 
-\- Role Based Access (Recruiter / Applicant)
+### Backend
 
-\- Recruiters can post jobs
+* FastAPI
+* PostgreSQL (Neon)
+* SQLAlchemy
+* Alembic
+* JWT Authentication
 
-\- Applicants can apply for jobs
+### Frontend
 
-\- View all jobs
+* React (Vite)
+* Axios
+* React Router
 
-\- View job details
+### Deployment
 
-\- Dockerized application
+* Backend: Render
+* Database: Neon (PostgreSQL)
+* Frontend: Vercel
+* Containerization: Docker, Docker Compose
 
-\- PostgreSQL database
+---
 
-\- Deployment ready
+## Architecture
 
+Client (React Frontend - Vercel)
+→ FastAPI Backend (Render)
+→ PostgreSQL Database (Neon)
 
+---
 
-\## Tech Stack
+## Project Structure
 
-Backend:
-
-\- FastAPI
-
-\- PostgreSQL
-
-\- SQLAlchemy
-
-\- Alembic
-
-\- JWT Authentication
-
-
-
-Frontend:
-
-\- React (Vite)
-
-\- Axios
-
-\- React Router
-
-
-
-DevOps:
-
-\- Docker
-
-\- Docker Compose
-
-\- Railway Deployment
-
-\- GitHub
-
-
-
-\## Project Structure
-
-
-
-job\_board/
-
+```
+job_board/
 │
-
 ├── backend/
-
 ├── frontend/
-
 ├── docker-compose.yml
-
 ├── README.md
-
 └── .gitignore
+```
 
+---
 
+## Running Locally (Docker)
 
+Run the entire application:
 
-
-\## Running Locally (Docker)
-
-```bash
-
+```
 docker-compose up --build
+```
 
-
-
-\##Frontend:
-
-
+### Frontend
 
 http://localhost:3000
 
+### Backend API
 
+http://localhost:8000
 
-\##Backend:
-
-
+### Swagger Docs
 
 http://localhost:8000/docs
 
-API Documentation
+---
 
+## Test Accounts
 
+### Recruiter
 
-\##Swagger Docs:
+Email: [recruiter@test.com]
+Password: password123
 
+### Candidate
 
+Email: [candidate@test.com]
+Password: password123
 
+---
+
+## API Documentation
+
+Swagger UI:
+
+```
 /docs
+```
 
+You can test all endpoints directly from the browser.
 
+---
 
-\#Future Improvements:
+## Key Backend Concepts Implemented
 
+* JWT Authentication (Access Token)
+* Role-Based Authorization
+* Relational Database Design with Foreign Keys
+* Unique Constraints (Prevent Duplicate Applications)
+* REST API Design with Proper Status Codes
+* Pagination and Filtering
+* Dockerized Environment
 
+---
 
-Resume Upload
+## Future Improvements
 
-Email Notifications
+* Full-text search (PostgreSQL)
+* Email notifications
+* Resume upload
+* Admin panel
+* Background jobs
+* Redis caching
+* Rate limiting
+* Unit and integration tests
 
-Admin Panel
+---
 
-Search and Filters
+## Author
 
-Pagination
-
-
-
-
-
-
-
-
-
+Full Stack Developer focused on backend systems, API design, and production-ready applications.
