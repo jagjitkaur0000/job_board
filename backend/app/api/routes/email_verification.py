@@ -1,4 +1,5 @@
 import hashlib
+import logging
 import secrets
 
 from datetime import datetime, timedelta, timezone
@@ -28,6 +29,9 @@ from app.schemas.email import (
 from app.services.email_service import (
     send_verification_email,
 )
+
+
+logger = logging.getLogger(__name__)
 
 
 router = APIRouter(
@@ -103,12 +107,22 @@ def send_verification_otp(
     db: Session = Depends(get_db),
 ):
 
+    logger.info(
+        "OTP SEND STARTED for email: %s",
+        request.email,
+    )
+
     user = (
         db.query(User)
         .filter(
             User.email == request.email
         )
         .first()
+    )
+
+    logger.info(
+        "User lookup completed. User found: %s",
+        bool(user),
     )
 
     if not user:
@@ -122,19 +136,46 @@ def send_verification_otp(
             "message": "Email already verified"
         }
 
+    logger.info(
+        "Creating OTP for user id: %s",
+        user.id,
+    )
+
     otp = create_otp_for_user(
         db,
         user,
     )
 
-    # Send email directly.
-    # This is intentionally synchronous so that
-    # SMTP errors appear in Render logs.
-
-    send_verification_email(
-        user.email,
-        otp,
+    logger.info(
+        "OTP created successfully for user id: %s",
+        user.id,
     )
+
+    logger.info(
+        "Starting email send to: %s",
+        user.email,
+    )
+
+    try:
+
+        send_verification_email(
+            user.email,
+            otp,
+        )
+
+        logger.info(
+            "EMAIL SEND COMPLETED successfully for: %s",
+            user.email,
+        )
+
+    except Exception:
+
+        logger.exception(
+            "EMAIL SEND FAILED for: %s",
+            user.email,
+        )
+
+        raise
 
     return {
         "message": (
