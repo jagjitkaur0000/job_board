@@ -41,6 +41,37 @@ app = FastAPI(
 )
 
 
+# ============================================================
+# CORS CONFIGURATION
+# ============================================================
+
+origins = [
+    # Local development
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+
+    # Production frontend
+    "https://job-board-brown-theta.vercel.app",
+]
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# ============================================================
+# UPLOADS
+# ============================================================
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 UPLOAD_DIR = BASE_DIR / "uploads"
@@ -58,25 +89,9 @@ app.mount(
 )
 
 
-origins = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:3001",
-    "http://127.0.0.1:3001",
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "https://job-board-brown-theta.vercel.app",
-]
-
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
+# ============================================================
+# ROOT
+# ============================================================
 
 @app.get("/")
 def root():
@@ -84,6 +99,10 @@ def root():
         "message": "Job Board API running"
     }
 
+
+# ============================================================
+# ROUTERS
+# ============================================================
 
 app.include_router(
     auth_router
