@@ -1,10 +1,10 @@
 import hashlib
 import secrets
+
 from datetime import datetime, timedelta, timezone
 
 from fastapi import (
     APIRouter,
-    BackgroundTasks,
     Depends,
     HTTPException,
     status,
@@ -37,7 +37,6 @@ router = APIRouter(
 
 
 def generate_otp() -> str:
-
     return f"{secrets.randbelow(1_000_000):06d}"
 
 
@@ -101,9 +100,9 @@ def create_otp_for_user(
 )
 def send_verification_otp(
     request: ResendVerificationRequest,
-    background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
 ):
+
     user = (
         db.query(User)
         .filter(
@@ -128,8 +127,11 @@ def send_verification_otp(
         user,
     )
 
-    background_tasks.add_task(
-        send_verification_email,
+    # Send email directly.
+    # This is intentionally synchronous so that
+    # SMTP errors appear in Render logs.
+
+    send_verification_email(
         user.email,
         otp,
     )
@@ -169,7 +171,6 @@ def verify_email(
         )
 
     if user.email_verified:
-
         return {
             "message": (
                 "Email already verified"
@@ -193,7 +194,6 @@ def verify_email(
     )
 
     if not otp_record:
-
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="No active verification OTP",
