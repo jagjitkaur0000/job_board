@@ -1,4 +1,5 @@
-"""add withdrawn_at
+"""
+add withdrawn_at
 
 Revision ID: cf03ee5d5342
 Revises: fa31f29f1a65
@@ -12,78 +13,54 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 
-# revision identifiers, used by Alembic.
 revision: str = "cf03ee5d5342"
-
 down_revision: Union[str, Sequence[str], None] = "fa31f29f1a65"
-
 branch_labels: Union[str, Sequence[str], None] = None
-
 depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-
-    # ============================================================
-    # EMAIL VERIFICATION OTP TABLE
-    # ============================================================
-
     op.create_table(
         "email_verification_otps",
-
         sa.Column(
             "id",
             sa.Integer(),
             nullable=False,
         ),
-
         sa.Column(
             "user_id",
             sa.Integer(),
             nullable=False,
         ),
-
         sa.Column(
             "otp_hash",
             sa.String(length=255),
             nullable=False,
         ),
-
         sa.Column(
             "expires_at",
             sa.DateTime(timezone=True),
             nullable=False,
         ),
-
         sa.Column(
             "is_used",
             sa.Boolean(),
             nullable=False,
             server_default=sa.false(),
         ),
-
         sa.Column(
             "created_at",
             sa.DateTime(timezone=True),
             nullable=False,
             server_default=sa.text("now()"),
         ),
-
         sa.ForeignKeyConstraint(
             ["user_id"],
             ["users.id"],
             ondelete="CASCADE",
         ),
-
         sa.PrimaryKeyConstraint("id"),
     )
-
-    # Remove old email verification table
-    op.drop_table("email_verifications")
-
-    # ============================================================
-    # APPLICATIONS
-    # ============================================================
 
     op.add_column(
         "applications",
@@ -109,10 +86,6 @@ def upgrade() -> None:
         existing_server_default=sa.text("now()"),
     )
 
-    # ============================================================
-    # JOBS
-    # ============================================================
-
     op.add_column(
         "jobs",
         sa.Column(
@@ -122,7 +95,6 @@ def upgrade() -> None:
         ),
     )
 
-    # Existing rows need a value
     op.add_column(
         "jobs",
         sa.Column(
@@ -139,7 +111,6 @@ def upgrade() -> None:
         server_default=None,
     )
 
-    # Existing rows need a value
     op.add_column(
         "jobs",
         sa.Column(
@@ -228,7 +199,6 @@ def upgrade() -> None:
         ),
     )
 
-    # Existing rows need a value
     op.add_column(
         "jobs",
         sa.Column(
@@ -254,7 +224,6 @@ def upgrade() -> None:
         ),
     )
 
-    # Existing rows need a value
     op.add_column(
         "jobs",
         sa.Column(
@@ -287,10 +256,6 @@ def upgrade() -> None:
         nullable=False,
         existing_server_default=sa.text("now()"),
     )
-
-    # ============================================================
-    # JOB INDEXES
-    # ============================================================
 
     op.create_index(
         op.f("ix_jobs_company_id"),
@@ -362,20 +327,12 @@ def upgrade() -> None:
         unique=False,
     )
 
-    # ============================================================
-    # ROLES INDEX
-    # ============================================================
-
     op.create_index(
         op.f("ix_roles_id"),
         "roles",
         ["id"],
         unique=False,
     )
-
-    # ============================================================
-    # USERS
-    # ============================================================
 
     op.add_column(
         "users",
@@ -422,7 +379,6 @@ def upgrade() -> None:
         ),
     )
 
-    # Existing users need a value
     op.add_column(
         "users",
         sa.Column(
@@ -438,10 +394,6 @@ def upgrade() -> None:
         "email_verified",
         server_default=None,
     )
-
-    # ============================================================
-    # USER EMAIL INDEX
-    # ============================================================
 
     op.drop_constraint(
         op.f("users_email_key"),
@@ -465,11 +417,6 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-
-    # ============================================================
-    # USERS
-    # ============================================================
-
     op.drop_index(
         op.f("ix_users_id"),
         table_name="users",
@@ -516,18 +463,10 @@ def downgrade() -> None:
         "full_name",
     )
 
-    # ============================================================
-    # ROLES
-    # ============================================================
-
     op.drop_index(
         op.f("ix_roles_id"),
         table_name="roles",
     )
-
-    # ============================================================
-    # JOB INDEXES
-    # ============================================================
 
     op.drop_index(
         op.f("ix_jobs_work_mode"),
@@ -578,10 +517,6 @@ def downgrade() -> None:
         op.f("ix_jobs_company_id"),
         table_name="jobs",
     )
-
-    # ============================================================
-    # JOB COLUMNS
-    # ============================================================
 
     op.alter_column(
         "jobs",
@@ -666,10 +601,6 @@ def downgrade() -> None:
         "location",
     )
 
-    # ============================================================
-    # APPLICATIONS
-    # ============================================================
-
     op.alter_column(
         "applications",
         "created_at",
@@ -690,60 +621,6 @@ def downgrade() -> None:
         "withdrawn_at",
     )
 
-    # ============================================================
-    # EMAIL VERIFICATION TABLES
-    # ============================================================
-
     op.drop_table(
         "email_verification_otps",
-    )
-
-    op.create_table(
-        "email_verifications",
-
-        sa.Column(
-            "id",
-            sa.INTEGER(),
-            autoincrement=True,
-            nullable=False,
-        ),
-
-        sa.Column(
-            "user_id",
-            sa.INTEGER(),
-            nullable=False,
-        ),
-
-        sa.Column(
-            "otp_code",
-            sa.VARCHAR(length=6),
-            nullable=False,
-        ),
-
-        sa.Column(
-            "is_used",
-            sa.BOOLEAN(),
-            nullable=False,
-        ),
-
-        sa.Column(
-            "expires_at",
-            postgresql.TIMESTAMP(timezone=True),
-            nullable=False,
-        ),
-
-        sa.Column(
-            "created_at",
-            postgresql.TIMESTAMP(timezone=True),
-            server_default=sa.text("now()"),
-            nullable=False,
-        ),
-
-        sa.ForeignKeyConstraint(
-            ["user_id"],
-            ["users.id"],
-            ondelete="CASCADE",
-        ),
-
-        sa.PrimaryKeyConstraint("id"),
     )
