@@ -1,0 +1,531 @@
+/* ============================================================
+   NAVBAR
+============================================================ */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border-bottom: 1px solid #e8edf3;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.navbar-container {
+  width: 100%;
+  max-width: 1320px;
+
+  margin: 0 auto;
+
+  padding: 13px 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   LOGO
+============================================================ */
+
+.navbar-logo {
+  display: inline-flex;
+  align-items: center;
+
+  text-decoration: none;
+
+  color: #111827;
+
+  font-size: 21px;
+  font-weight: 850;
+
+  letter-spacing: -0.6px;
+
+  white-space: nowrap;
+
+  transition: opacity 0.2s ease;
+}
+
+.navbar-logo span {
+  color: #2563eb;
+  margin-left: 4px;
+}
+
+.navbar-logo:hover {
+  opacity: 0.85;
+}
+
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+
+/* ============================================================
+   NORMAL NAVIGATION LINKS
+============================================================ */
+
+.navbar-link {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 9px 12px;
+
+  border-radius: 8px;
+
+  color: #475569;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.navbar-link:hover {
+  color: #1d4ed8;
+  background: #f5f8ff;
+}
+
+
+/* ============================================================
+   NOTIFICATION BUTTON
+============================================================ */
+
+.navbar-icon-link {
+  position: relative;
+
+  width: 40px;
+  height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 4px;
+
+  border-radius: 9px;
+
+  color: #475569;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.navbar-icon-link:hover {
+  color: #2563eb;
+  background: #f3f6fc;
+
+  transform: translateY(-1px);
+}
+
+
+.notification-icon {
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* ============================================================
+   NOTIFICATION BADGE
+============================================================ */
+
+.notification-badge {
+  position: absolute;
+
+  top: 1px;
+  right: 0;
+
+  min-width: 18px;
+  height: 18px;
+
+  padding: 0 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  border: 2px solid #ffffff;
+
+  border-radius: 999px;
+
+  background: #dc2626;
+
+  color: #ffffff;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+
+/* ============================================================
+   PROFILE
+============================================================ */
+
+.navbar-profile {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-left: 4px;
+
+  padding: 4px 11px 4px 4px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 999px;
+
+  background: #ffffff;
+
+  color: #334155;
+
+  text-decoration: none;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.navbar-profile:hover {
+  border-color: #cbd5e1;
+
+  background: #f8fafc;
+
+  box-shadow:
+    0 3px 12px rgba(15, 23, 42, 0.07);
+}
+
+
+/* ============================================================
+   PROFILE PHOTO
+============================================================ */
+
+.navbar-profile-photo,
+.navbar-profile-placeholder {
+  width: 32px;
+  height: 32px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+}
+
+.navbar-profile-photo {
+  object-fit: cover;
+
+  border: 1px solid #e2e8f0;
+}
+
+
+/* ============================================================
+   PROFILE PLACEHOLDER
+============================================================ */
+
+.navbar-profile-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   PROFILE NAME
+============================================================ */
+
+.navbar-profile-name {
+  max-width: 115px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   LOGIN
+============================================================ */
+
+.navbar-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 13px;
+
+  border-radius: 8px;
+
+  color: #334155;
+
+  font-size: 14px;
+  font-weight: 650;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.navbar-login:hover {
+  color: #1d4ed8;
+
+  background: #f5f8ff;
+}
+
+
+/* ============================================================
+   CREATE ACCOUNT
+============================================================ */
+
+.navbar-register {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 3px;
+
+  padding: 9px 16px;
+
+  border: 1px solid #2563eb;
+
+  border-radius: 8px;
+
+  background: #2563eb;
+
+  color: #ffffff !important;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 3px 8px rgba(37, 99, 235, 0.16);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.navbar-register:hover {
+  background: #1d4ed8;
+
+  border-color: #1d4ed8;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 12px rgba(37, 99, 235, 0.22);
+}
+
+
+/* ============================================================
+   LOGOUT
+============================================================ */
+
+.navbar-logout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 3px;
+
+  padding: 8px 13px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #64748b;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.navbar-logout:hover {
+  color: #dc2626;
+
+  background: #fff7f7;
+
+  border-color: #fecaca;
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1050px) {
+
+  .navbar-container {
+    padding: 12px 22px;
+  }
+
+  .navbar-links {
+    gap: 3px;
+  }
+
+  .navbar-link {
+    padding: 8px 9px;
+  }
+
+  .navbar-profile-name {
+    max-width: 90px;
+  }
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 800px) {
+
+  .navbar-container {
+    padding: 11px 16px;
+  }
+
+  .navbar-logo {
+    font-size: 19px;
+  }
+
+  .navbar-link {
+    display: none;
+  }
+
+  .navbar-profile-name {
+    display: none;
+  }
+
+  .navbar-profile {
+    padding-right: 4px;
+  }
+
+  .navbar-logout {
+    padding: 8px 10px;
+  }
+
+  .navbar-login {
+    padding: 8px 10px;
+  }
+
+  .navbar-register {
+    padding: 8px 12px;
+  }
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 480px) {
+
+  .navbar-container {
+    padding: 10px 12px;
+  }
+
+  .navbar-logo {
+    font-size: 17px;
+  }
+
+  .navbar-register {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .navbar-login {
+    font-size: 12px;
+  }
+
+  .navbar-logout {
+    font-size: 12px;
+  }
+
+  .navbar-icon-link {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navbar-profile-photo,
+  .navbar-profile-placeholder {
+    width: 30px;
+    height: 30px;
+  }
+}

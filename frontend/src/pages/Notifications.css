@@ -1,0 +1,146 @@
+.notifications-page {
+  min-height: calc(100vh - 80px);
+  padding: 48px 24px;
+  background: #f7f8fc;
+}
+
+.notifications-container {
+  width: min(1000px, 100%);
+  margin: 0 auto;
+}
+
+.notifications-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.notifications-header h1 {
+  margin: 4px 0 10px;
+  font-size: 38px;
+  line-height: 1.1;
+}
+
+.notifications-header p {
+  margin: 0;
+  color: #667085;
+}
+
+.notifications-header button,
+.notification-actions button {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 16px;
+  background: #111827;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.notifications-header button:hover,
+.notification-actions button:hover {
+  opacity: 0.9;
+}
+
+.notifications-error {
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: #fee4e2;
+  color: #b42318;
+}
+
+.notifications-empty {
+  padding: 60px 24px;
+  text-align: center;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid #eaecf0;
+}
+
+.notifications-empty h2 {
+  margin-bottom: 8px;
+}
+
+.notifications-empty p {
+  margin: 0;
+  color: #667085;
+}
+
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.notification-card {
+  padding: 22px;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid #eaecf0;
+  box-shadow: 0 4px 16px rgba(16, 24, 40, 0.04);
+}
+
+.notification-card.unread {
+  border-left: 4px solid #111827;
+}
+
+.notification-card.read {
+  opacity: 0.78;
+}
+
+.notification-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.notification-card h2 {
+  margin: 0 0 6px;
+  font-size: 19px;
+}
+
+.notification-date {
+  margin: 0;
+  color: #98a2b3;
+  font-size: 13px;
+}
+
+.notification-message {
+  margin: 18px 0;
+  color: #475467;
+  line-height: 1.6;
+}
+
+.notification-new {
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #111827;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.notification-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+  .notifications-page {
+    padding: 32px 16px;
+  }
+
+  .notifications-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .notifications-header h1 {
+    font-size: 30px;
+  }
+}

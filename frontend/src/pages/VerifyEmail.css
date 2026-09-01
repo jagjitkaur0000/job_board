@@ -1,0 +1,175 @@
+.verify-page {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  background: #f5f7fb;
+}
+
+.verify-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 40px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.verify-brand {
+  margin-bottom: 18px;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.verify-card h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.verify-description {
+  margin: 12px 0 30px;
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.verify-card label {
+  display: block;
+  margin-bottom: 8px;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.verify-card input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.verify-card input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.send-otp-section {
+  margin-bottom: 24px;
+}
+
+.email-row {
+  display: flex;
+  gap: 10px;
+}
+
+.email-row input {
+  flex: 1;
+}
+
+.secondary-button {
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  padding: 0 16px;
+  background: #ffffff;
+  color: #2563eb;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.secondary-button:hover:not(:disabled) {
+  background: #eff6ff;
+}
+
+.verify-button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.verify-button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.verify-button:disabled,
+.secondary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.success-message,
+.error-message {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.success-message {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.error-message {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+@media (max-width: 600px) {
+  .verify-page {
+    padding: 30px 16px;
+  }
+
+  .verify-card {
+    padding: 28px 20px;
+  }
+
+  .verify-card h1 {
+    font-size: 28px;
+  }
+
+  .email-row {
+    flex-direction: column;
+  }
+
+  .secondary-button {
+    padding: 12px;
+  }
+}
+.back-login-button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-login-button:hover {
+  color: #1d4ed8;
+}

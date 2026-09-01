@@ -24,3 +24,5 @@ build/
 
 # Database
 *.sqlite3
+# Uploaded files
+backend/uploads/

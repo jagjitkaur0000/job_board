@@ -1,0 +1,158 @@
+.schedule-interview-page {
+  min-height: calc(100vh - 80px);
+  padding: 50px 20px;
+  background: #f7f8fc;
+}
+
+.schedule-interview-container {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.schedule-interview-header {
+  margin-bottom: 30px;
+}
+
+.schedule-interview-header .section-label {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.schedule-interview-header h1 {
+  margin: 0 0 10px;
+  font-size: 34px;
+  line-height: 1.2;
+  color: #111827;
+}
+
+.schedule-interview-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.schedule-error {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+.schedule-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.schedule-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.schedule-form input,
+.schedule-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 13px 14px;
+  font-family: inherit;
+  font-size: 15px;
+  color: #111827;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.schedule-form input:focus,
+.schedule-form textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.schedule-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.schedule-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.schedule-actions button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease,
+              opacity 0.15s ease,
+              box-shadow 0.15s ease;
+}
+
+.schedule-actions button:hover {
+  transform: translateY(-1px);
+}
+
+.schedule-actions button[type="button"] {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.schedule-actions button[type="submit"] {
+  background: #111827;
+  color: #ffffff;
+  box-shadow: 0 5px 14px rgba(17, 24, 39, 0.18);
+}
+
+.schedule-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+@media (max-width: 640px) {
+  .schedule-interview-page {
+    padding: 25px 14px;
+  }
+
+  .schedule-interview-container {
+    padding: 25px 20px;
+    border-radius: 14px;
+  }
+
+  .schedule-interview-header h1 {
+    font-size: 28px;
+  }
+
+  .schedule-actions {
+    flex-direction: column-reverse;
+  }
+
+  .schedule-actions button {
+    width: 100%;
+  }
+}

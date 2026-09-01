@@ -1,0 +1,269 @@
+.edit-job-page {
+  min-height: calc(100vh - 80px);
+  background: #f6f7fb;
+  padding: 40px 20px 70px;
+}
+
+.edit-job-container {
+  width: min(100%, 1050px);
+  margin: 0 auto;
+}
+
+.edit-job-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.edit-job-label {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #7c3aed;
+}
+
+.edit-job-header h1 {
+  margin: 0;
+  color: #171725;
+  font-size: 36px;
+  line-height: 1.15;
+}
+
+.edit-job-header p:last-child {
+  margin: 10px 0 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.edit-job-cancel {
+  border: 1px solid #d9dce5;
+  background: #ffffff;
+  color: #374151;
+  border-radius: 10px;
+  padding: 11px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.edit-job-cancel:hover {
+  background: #f3f4f6;
+}
+
+.edit-job-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.edit-job-section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 8px 30px rgba(17, 24, 39, 0.05);
+}
+
+.edit-job-section h2 {
+  margin: 0 0 22px;
+  font-size: 20px;
+  color: #171725;
+}
+
+.edit-job-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.edit-job-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-job-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.edit-job-field label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.edit-job-field input,
+.edit-job-field select,
+.edit-job-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d8dbe5;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #171725;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.edit-job-field input,
+.edit-job-field select {
+  height: 46px;
+}
+
+.edit-job-field textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.5;
+}
+
+.edit-job-field input:focus,
+.edit-job-field select:focus,
+.edit-job-field textarea:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.edit-job-field input::placeholder,
+.edit-job-field textarea::placeholder {
+  color: #9ca3af;
+}
+
+.edit-job-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: end;
+  min-height: 46px;
+}
+
+.edit-job-checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: #7c3aed;
+  cursor: pointer;
+}
+
+.edit-job-checkbox label {
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit-job-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.edit-job-secondary,
+.edit-job-save {
+  border: none;
+  border-radius: 10px;
+  padding: 13px 24px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.edit-job-secondary {
+  background: #ffffff;
+  border: 1px solid #d9dce5;
+  color: #374151;
+}
+
+.edit-job-secondary:hover {
+  background: #f3f4f6;
+}
+
+.edit-job-save {
+  background: #7c3aed;
+  color: #ffffff;
+  min-width: 150px;
+}
+
+.edit-job-save:hover {
+  background: #6d28d9;
+}
+
+.edit-job-save:disabled,
+.edit-job-secondary:disabled,
+.edit-job-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.edit-job-loading {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 50px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.edit-job-error {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.edit-job-back-button {
+  border: none;
+  border-radius: 10px;
+  background: #7c3aed;
+  color: #ffffff;
+  padding: 12px 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .edit-job-page {
+    padding: 25px 14px 50px;
+  }
+
+  .edit-job-header {
+    flex-direction: column;
+  }
+
+  .edit-job-header h1 {
+    font-size: 30px;
+  }
+
+  .edit-job-section {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .edit-job-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-job-field.full-width {
+    grid-column: auto;
+  }
+
+  .edit-job-actions {
+    flex-direction: column-reverse;
+  }
+
+  .edit-job-secondary,
+  .edit-job-save {
+    width: 100%;
+  }
+}

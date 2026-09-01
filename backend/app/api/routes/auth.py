@@ -26,7 +26,8 @@ def register(
         db=db,
         email=user_data.email,
         password=user_data.password,
-        role_name=user_data.role_name
+        role_name=user_data.role_name,
+        full_name=user_data.full_name,
     )
 
     return user
